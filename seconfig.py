@@ -16,7 +16,15 @@ except NameError:
 	FileNotFoundError=IOError
 
 def defaultDbConfigFile() :
-	return
+	import appdirs
+	return os.path.join(
+		appdirs.user_config_dir(
+			appname='dbconfig',
+			appauthor='somenergia',
+			version='1.0',
+			),
+			'dbconfig.yaml',
+		)
 
 def dbconfig(config=None, configfile=None):
 	schema = config or os.environ.get('SE_DATABASE', 'default')
@@ -66,6 +74,18 @@ class dbconfig_test(unittest.TestCase):
 		config=dbconfig(configfile='config.yaml')
 		self.assertDictEqual(config, self.data.alternative)
 		del os.environ['SE_DATABASE']
+
+	def test_defaultDbConfigFile_linux(self) :
+		self.assertEqual(
+			os.path.join(
+				os.environ['HOME'],
+				'.config',
+#				'somenergia',
+				'dbconfig',
+				'1.0',
+				'dbconfig.yaml',
+			),
+			defaultDbConfigFile())
 
 
 
