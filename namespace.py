@@ -64,10 +64,10 @@ class namespace(dict) :
 				default_flow_style=False,
 				allow_unicode=True,
 				)
+		from codecs import open # Python2 compatibility
 		with open(filename, 'w', encoding='utf-8') as f :
 			yaml.dump(unwrap(self), stream=f,
 				default_flow_style=False,
 				allow_unicode=True,
 				)
-
 
