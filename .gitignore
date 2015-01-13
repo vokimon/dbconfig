@@ -1,0 +1,8 @@
+# libreoffice lock files
+.~*#
+# vim swap files
+.*sw?
+# python cache files
+__pycache__
+*.pyc
+*.qm
