@@ -21,6 +21,7 @@ except NameError:
 
 class BadProfile(Exception) : pass
 class MissingValue(Exception) : pass
+
 _mandatoryKeys = [
 	'username',
 	'database',
