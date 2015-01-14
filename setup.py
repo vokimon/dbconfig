@@ -36,7 +36,7 @@ setup(
         'PyYAML',
         'appdirs',
     ],
-    test_suite='tests',
+    test_suite='nose2.collector.collector',
     classifiers = [
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',

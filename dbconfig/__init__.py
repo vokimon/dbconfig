@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from namespace import namespace
 """
 TODO:
 - Detectar que no existe en el path
@@ -11,7 +10,8 @@ TODO:
 - Any attribute is null
 """
 import os
-from consolemsg import error
+from .namespace import namespace
+from .consolemsg import error
 
 
 # Kludge in order to use FileNotFoundError in Python2
@@ -22,7 +22,7 @@ except NameError:
 class BadProfile(Exception) : pass
 class MissingValue(Exception) : pass
 
-mandatoryKeys = [
+_mandatoryKeys = [
 	'username',
 	'database',
 	'password',
@@ -39,18 +39,20 @@ def defaultDbConfigFile() :
 			'dbconfig.yaml',
 		)
 
-def generateDefault(configfile) :
+def generateDefault(configfile, required=_mandatoryKeys) :
 	data=namespace(
 		default=namespace(
-			(key,None) for key in mandatoryKeys
+			(key,None) for key in required
 		))
 	data.dump(configfile)
 	return data
 
-def dbconfig(configfile=None, profile=None, ):
-	profile = profile or os.environ.get('SE_DATABASE', 'default')
-	if not configfile :
-		configfile = defaultDbConfigFile()
+def dbconfig(configfile=None, profile=None, required=_mandatoryKeys ):
+
+	profile = profile or os.environ.get('DBCONFIG_PROFILE', 'default')
+
+	configfile = configfile or defaultDbConfigFile()
+
 	try :
 		data = namespace.load(configfile)
 	except FileNotFoundError:
@@ -58,7 +60,8 @@ def dbconfig(configfile=None, profile=None, ):
 			"Database configuration file not available, "
 			"generating a default one at '{}'"
 			.format(configfile))
-		data = generateDefault(configfile)
+		data = generateDefault(configfile, required)
+
 	try:
 		result = data[profile]
 	except KeyError:
@@ -68,7 +71,7 @@ def dbconfig(configfile=None, profile=None, ):
 		error(message)
 		raise BadProfile(message)
 
-	for key in mandatoryKeys:
+	for key in required:
 		if key not in result or not result[key] :
 			raise MissingValue(key)
 
