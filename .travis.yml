@@ -1,0 +1,12 @@
+language: python
+python:
+  - "2.7"
+  - "2.6"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+script: /usr/bin/env python -m nose2
+install:
+  - pip install -r requirements.txt
+
+
