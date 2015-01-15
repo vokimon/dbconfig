@@ -1,6 +1,6 @@
 # python-dbconfig
 
-[![Build Status](https://travis-ci.org/gisce/libComXML.png?branch=master)](https://travis-ci.org/gisce/libComXML)
+[![Build Status](https://travis-ci.org/vokimon/python-dbconfig.png?branch=master)](https://travis-ci.org/vokimon/dbconfig)
 
 
 Quick way to store db connection details out of sources.
