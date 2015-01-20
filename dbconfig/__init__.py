@@ -2,8 +2,8 @@
 
 """
 TODO:
-- Detectar que no existe en el path
-- Generar uno vacio
++ Detectar que no existe en el path
++ Generar uno vacio
 - Test default path on windows
 - Test default path on mac 
 - Getting a missing profile
