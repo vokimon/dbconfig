@@ -36,6 +36,9 @@ def defaultConfigDbFile() :
 		)
 
 def generateDefault(configfile, required=_mandatoryKeys) :
+	container = os.path.dirname(configfile)
+	if container and not os.access(container, os.R_OK) :
+		os.makedirs(os.path.dirname(configfile))
 	data=namespace(
 		default=namespace(
 			(key,None) for key in required
