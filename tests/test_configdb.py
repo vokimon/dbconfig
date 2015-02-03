@@ -3,7 +3,7 @@
 from configdb import *
 import unittest
 
-# Kludge in order to use FileNotFoundError in Python2
+#  Kludge in order to use FileNotFoundError in Python2
 try: FileNotFoundError
 except NameError:
 	FileNotFoundError=IOError
