@@ -22,21 +22,17 @@ except NameError:
 class BadProfile(Exception) : pass
 class MissingValue(Exception) : pass
 
-_mandatoryKeys = [
-	'username',
-	'database',
-	'password',
-	]
+_mandatoryKeys = 'dbname user pwd'.split()
 
-def defaultDbConfigFile() :
+def defaultConfigDbFile() :
 	import appdirs
 	return os.path.join(
 		appdirs.user_config_dir(
-			appname='dbconfig',
+			appname='configdb',
 			appauthor='somenergia',
 			version='1.0',
 			),
-			'dbconfig.yaml',
+			'configdb.yaml',
 		)
 
 def generateDefault(configfile, required=_mandatoryKeys) :
@@ -47,11 +43,11 @@ def generateDefault(configfile, required=_mandatoryKeys) :
 	data.dump(configfile)
 	return data
 
-def dbconfig(configfile=None, profile=None, required=_mandatoryKeys ):
+def configdb(configfile=None, profile=None, required=_mandatoryKeys ):
 
-	profile = profile or os.environ.get('DBCONFIG_PROFILE', 'default')
+	profile = profile or os.environ.get('CONFIGDB_PROFILE', 'default')
 
-	configfile = configfile or defaultDbConfigFile()
+	configfile = configfile or defaultConfigDbFile()
 
 	try :
 		data = namespace.load(configfile)

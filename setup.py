@@ -3,9 +3,9 @@ from setuptools import setup
 readme = """
 Quick way to store db connection details out of sources.
 
-  import dbconfig
+  import configdb
   import ooop
-  ooop.OOOP( dbconfig.dbconfig(required="user pwd dbname") )
+  ooop.OOOP( configdb.configdb(required="user pwd dbname") )
 
 By default, attributes are taken from a YAML file at system
 defined user configuration location. From the key (profile) 'default'.
@@ -16,19 +16,19 @@ To change the profile you can use the 'profile' keyword or
 `DBCONFIG_PROFILE` environ.
 
 
-https://github.com/vokimon/python-dbconfig
+https://github.com/vokimon/python-configdb
 """
 setup(
-    name = "dbconfig",
+    name = "configdb",
     version = "0.1",
     description = "Quick way to store db connection details out of sources",
     author = "David Garcia Garzon",
     author_email = "voki@canvoki.net",
-    url = 'https://github.com/vokimon/python-dbconfig',
+    url = 'https://github.com/vokimon/python-configdb',
     long_description = readme,
     license = 'GNU General Public License v3 or later (GPLv3+)',
     packages=[
-        'dbconfig',
+        'configdb',
     ],
     scripts=[
     ],
