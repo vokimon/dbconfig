@@ -4,10 +4,12 @@
 
 Quick way to store db connection details out of sources.
 
-  import configdb
-  import ooop
-  ooop.OOOP( configdb.configdb(required="user pwd dbname") )
-  ...
+```python
+import configdb
+import ooop
+ooop.OOOP( configdb.configdb(required="user pwd dbname") )
+...
+```
 
 By default, attributes are taken from a YAML file at system
 defined user configuration location. From the key (profile) 'default'.
