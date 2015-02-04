@@ -20,7 +20,7 @@ https://github.com/vokimon/python-configdb
 """
 setup(
     name = "configdb",
-    version = "0.1",
+    version = "0.2",
     description = "Quick way to store db connection details out of sources",
     author = "David Garcia Garzon",
     author_email = "voki@canvoki.net",
